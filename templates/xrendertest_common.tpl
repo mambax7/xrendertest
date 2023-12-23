@@ -3,11 +3,10 @@
 	&nbsp; Back to Forms Test Index &nbsp;
 </button>
 <hr>
-<{ if $no_action == true }>
+<{if isset($no_action) && $no_action == true}>
 <div style="margin-left: 20px;">
 	<b>This is a mock-up form.  No form action will occur.</b>
 </div>
 <hr>
-<{ /if }>
-
+<{/if}>
 <{$xoForm.rendered}>

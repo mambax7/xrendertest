@@ -23,6 +23,7 @@
  /**
  * Class XrendertestUtility
  */
+
 class XrendertestUtility
 {
     /**
@@ -131,7 +132,7 @@ class XrendertestUtility
     {
         $names = $this->getElementNames();
         $filtered = array_filter($names, function($e) use($type) {
-            return stristr($e, $type) !== false;
+            return stristr($e??'', $type) !== false;
         });
         if (empty($filtered)) {
             return 1;
@@ -356,7 +357,7 @@ class XrendertestUtility
     public function addElementDescription($title, $descrip = null)
     {
         $text = '===== [ ' . $title;
-        if ($descrip != null && $descrip != '') {
+        if (!empty($descrip)) {
             $text .= '&nbsp; - &nbsp;' . $descrip;
         }
         $text .= ' ] =====';
@@ -734,6 +735,7 @@ class XrendertestUtility
      */
     public function getSmiliesForm($formName)
     {
+//        xoops_loadLanguage('admin/smilies', 'system');
         //  Mock properties
         $blank_img = 'smil3dbd4d4e4c4f2.gif';
         $title = sprintf(_AM_SYSTEM_SMILIES_EDIT);
@@ -790,7 +792,11 @@ class XrendertestElementWrapper
 
     public function __construct($element, $required = false)
     {
-        $this->_name = $element->_name;
+        if (is_object($element)) {
+            $this->_name = $element->_name;
+        }
+//        $this->_name = $element->_name;
+
         $this->_required = $required;
         $this->_element = $element;
     }

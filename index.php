@@ -21,15 +21,18 @@ use Xmf\Request;
  */
 
 $path = dirname(dirname(__DIR__));
-require_once $path . '/mainfile.php';
 
 $GLOBALS['xoopsOption']['template_main'] = 'xrendertest_index.tpl';
+require_once $path . '/mainfile.php';
 include_once XOOPS_ROOT_PATH . '/header.php';
+//xoops_header();
 
 Language::load('global');
 Language::load('user');
-Language::load('admin\avatars', 'system');
-Language::load('admin\smilies', 'system');
+Language::load('admin', 'system');
+Language::load('admin/avatars', 'system');
+Language::load('admin/smilies', 'system');
+
 
 include_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
 xoops_load('utility', basename(__DIR__));
@@ -135,3 +138,4 @@ if ($op != '') {
 }
 
 include_once $GLOBALS['xoops']->path('footer.php');
+
